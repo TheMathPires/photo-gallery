@@ -23,10 +23,14 @@
       @if (loading()) {
         <div class="lightbox-spinner" aria-hidden="true"></div>
       }
+      @if (loadError()) {
+        <p class="lightbox-error" role="alert">Falha ao carregar a imagem.</p>
+      }
       <img
         [src]="current.src"
         [alt]="current.alt"
         (load)="onImageLoad()"
+        (error)="onImageError()"
         class="lightbox-image"
         width="1200"
         height="800"

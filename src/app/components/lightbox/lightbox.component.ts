@@ -19,6 +19,7 @@ export class LightboxComponent {
 
   readonly photo = this.gallery.selectedPhoto;
   readonly loading = signal(true);
+  readonly loadError = signal(false);
 
   readonly imgLoaded = computed(() => !this.loading());
 
@@ -26,6 +27,7 @@ export class LightboxComponent {
     effect(() => {
       const p = this.gallery.selectedPhoto();
       this.loading.set(!!p);
+      this.loadError.set(false);
     });
   }
 
@@ -47,6 +49,12 @@ export class LightboxComponent {
 
   onImageLoad(): void {
     this.loading.set(false);
+    this.loadError.set(false);
+  }
+
+  onImageError(): void {
+    this.loading.set(false);
+    this.loadError.set(true);
   }
 
   close(): void {
