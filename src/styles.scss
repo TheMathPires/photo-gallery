@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles - Photo Gallery */
+:root {
+  --bg: #0f0f12;
+  --card-bg: #1a1a1e;
+  --placeholder-bg: #25252a;
+  --input-bg: #25252a;
+  --text: #fafafa;
+  --text-muted: #a1a1aa;
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}

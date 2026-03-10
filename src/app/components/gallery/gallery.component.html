@@ -1,0 +1,41 @@
+<section class="gallery" aria-label="Galeria de fotos">
+  <header class="gallery-header">
+    <h1 class="gallery-title">Galeria de Fotos</h1>
+    <div class="gallery-toolbar">
+      <label for="search" class="sr-only">Buscar fotos</label>
+      <input
+        id="search"
+        type="search"
+        class="gallery-search"
+        placeholder="Buscar por autor ou descrição..."
+        [value]="searchQuery()"
+        (input)="onSearchInput($any($event.target).value)"
+        autocomplete="off"
+      />
+    </div>
+  </header>
+
+  @if (loading()) {
+    <div class="gallery-loading" role="status" aria-live="polite">
+      <div class="gallery-spinner"></div>
+      <p>Carregando fotos...</p>
+    </div>
+  } @else if (filteredPhotos().length === 0) {
+    <div class="gallery-empty">
+      <p>Nenhuma foto encontrada.</p>
+      @if (searchQuery()) {
+        <button type="button" class="gallery-clear-search" (click)="onSearchInput('')">
+          Limpar busca
+        </button>
+      }
+    </div>
+  } @else {
+    <div class="gallery-grid" role="list">
+      @for (photo of filteredPhotos(); track photo.id) {
+        <div class="gallery-item" role="listitem">
+          <app-photo-card [photo]="photo" (clicked)="onPhotoClick($event)" />
+        </div>
+      }
+    </div>
+  }
+</section>

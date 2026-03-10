@@ -1,0 +1,23 @@
+<article class="photo-card" (click)="onCardClick()" role="button" tabindex="0" (keydown.enter)="onCardClick()" (keydown.space)="onCardClick()">
+  <div class="card-image-wrapper">
+    @defer (on viewport) {
+      <img
+        [src]="photo().thumb"
+        [alt]="photo().alt"
+        loading="lazy"
+        width="400"
+        height="300"
+        class="card-image"
+      />
+    } @placeholder {
+      <div class="card-placeholder" aria-hidden="true"></div>
+    } @loading (minimum 150ms) {
+      <div class="card-loading" aria-hidden="true"></div>
+    } @error {
+      <div class="card-error">Erro ao carregar</div>
+    }
+  </div>
+  <footer class="card-footer">
+    <span class="card-author">{{ photo().author }}</span>
+  </footer>
+</article>
